@@ -320,7 +320,7 @@ function sprayPaint(x, y) {
 }
 
 function saveAs(format) {
-    if (confirm("هل تريد حفظ الرسمة في السحابة؟")) {
+    if (confirm("Save drawing to cloud?")) {
         saveToFirebase(format);
     } else {
         const link = document.createElement('a');
