@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beginners Zone - NovArt</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="shortcut icon" href="./images/novart-logo.png" type="image/x-icon">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        .tutorial-step {
+            transition: transform 0.3s ease;
+        }
+        .tutorial-step:hover {
+            transform: translateY(-5px);
+        }
+        .progress-bar {
+            transition: width 0.3s ease;
+        }
+        .filter-btn.active {
+            background-color: #3B82F6;
+            color: white;
+        }
+        .tool-btn.active {
+            background-color: #3B82F6;
+            color: white;
+        }
+        .achievement-badge {
+            animation: bounce 0.5s ease infinite alternate;
+        }
+        @keyframes bounce {
+            from { transform: translateY(0); }
+            to { transform: translateY(-10px); }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <nav class="bg-white shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="/" class="flex items-center">
+                        <i class="fas fa-paint-brush text-blue-600 text-2xl mr-2"></i>
+                        <span class="text-xl font-bold text-gray-800">NovArt Beginners</span>
+                    </a>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <a href="/" class="text-gray-600 hover:text-blue-600">Home</a>
+                    <a href="professional.html" class="text-gray-600 hover:text-blue-600">Professional</a>
+                    <a href="kids.html" class="text-gray-600 hover:text-blue-600">Kids Zone</a>
+                    <a href="./shurtcuts.html" class="text-gray-600 hover:text-blue-600">shurtcuts</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mx-auto px-4 py-8">
+        <div class="text-center mb-12">
+            <h1 class="text-4xl font-bold text-gray-900 mb-4">Drawing Tutorials</h1>
+            <p class="text-xl text-gray-600">Learn to draw with our step-by-step guides</p>
+        </div>
+
+        <div class="mb-8 flex justify-center gap-4">
+            <button class="filter-btn active px-4 py-2 rounded-lg border border-gray-300" data-category="all">All</button>
+            <button class="filter-btn px-4 py-2 rounded-lg border border-gray-300" data-category="basics">Basics</button>
+            <button class="filter-btn px-4 py-2 rounded-lg border border-gray-300" data-category="portraits">Portraits</button>
+            <button class="filter-btn px-4 py-2 rounded-lg border border-gray-300" data-category="landscapes">Landscapes</button>
+            <button class="filter-btn px-4 py-2 rounded-lg border border-gray-300" data-category="digital">Digital</button>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12" id="tutorialCategories">
+        </div>
+
+        <!-- محتوى الدروس -->
+        <div id="tutorialContent" class="hidden">
+            <div class="bg-gray-200 rounded-full h-4 mb-8">
+                <div id="progressBar" class="bg-blue-600 h-4 rounded-full progress-bar" style="width: 0%"></div>
+            </div>
+
+            <div id="tutorialSteps" class="space-y-8"></div>
+
+            <div class="flex justify-between mt-8">
+                <button id="prevStep" class="bg-gray-600 text-white px-6 py-2 rounded-lg hover:bg-gray-700 transition duration-300 disabled:opacity-50 disabled:cursor-not-allowed">
+                    <i class="fas fa-arrow-left mr-2"></i> Previous
+                </button>
+                <button id="nextStep" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition duration-300 disabled:opacity-50 disabled:cursor-not-allowed">
+                    Next <i class="fas fa-arrow-right ml-2"></i>
+                </button>
+            </div>
+        </div>
+
+        <!--- منطقة الممارسة -->
+        <div class="mt-16">
+            <h2 class="text-3xl font-bold text-gray-900 mb-8 text-center">Practice Area</h2>
+            <!-- شريط الادوات -->
+            <div class="flex gap-2 mb-4 justify-center">
+                <button class="tool-btn active bg-blue-100 px-4 py-2 rounded-lg border border-gray-300" data-tool="pencil">✏️ Pencil</button>
+                <button class="tool-btn bg-gray-100 px-4 py-2 rounded-lg border border-gray-300" data-tool="eraser">🧽 Eraser</button>
+                <input type="color" id="practiceColor" value="#000000" class="h-10 w-10 rounded-lg border border-gray-300">
+                <button id="brushSizeBtn" class="bg-gray-100 px-4 py-2 rounded-lg border border-gray-300">Size: <span id="brushSizeValue">5</span>px</button>
+                <button id="shareBtn" class="bg-green-100 px-4 py-2 rounded-lg border border-gray-300 hover:bg-green-200">
+                    <i class="fas fa-share mr-1"></i> Share
+                </button>
+                
+                    <button id="undo" class="p-2 rounded border hover:bg-blue-50" disabled>
+                        <i class="fas fa-undo"></i> Undo
+                    </button>
+                    <button id="redo" class="p-2 rounded border hover:bg-blue-50" disabled>
+                        <i class="fas fa-redo"></i> Redo
+                    </button>
+                   
+                
+            </div>
+            
+            <div class="bg-white rounded-lg shadow-lg p-6">
+                <canvas id="practiceCanvas" class="w-full border border-gray-200 rounded-lg"></canvas>
+                <div class="flex justify-end mt-4 space-x-4">
+                    <button id="clearCanvas" class="bg-red-100 text-red-600 px-4 py-2 rounded-lg hover:bg-red-200 transition duration-300">
+                        <i class="fas fa-trash mr-2"></i> Clear
+                    </button>
+                    <button id="savePractice" class="bg-green-100 text-green-600 px-4 py-2 rounded-lg hover:bg-green-200 transition duration-300">
+                        <i class="fas fa-download mr-2"></i> Save
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- شارة الإنجاز -->
+    <div id="achievementBadge" class="fixed bottom-4 right-4 bg-yellow-400 p-4 rounded-lg shadow-xl hidden achievement-badge">
+        <div class="flex items-center">
+            <i class="fas fa-trophy text-2xl mr-2"></i>
+            <div>
+                <p class="font-bold">Achievement Unlocked!</p>
+                <p id="achievementText" class="text-sm"></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/tutorials.js"></script>
+</body>
+</html>
